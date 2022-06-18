@@ -1,9 +1,10 @@
-import { initializeApp, cert } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
-import serviceAccount from './simpleblog_sdk.json' assert {type: 'json'};
+const firebase_app = require('firebase-admin');
+const serviceAccount = require('./simpleblog_sdk.json');
 
-initializeApp({
-    credential: cert(serviceAccount)
+firebase_app.initializeApp({
+    credential: firebase_app.credential.cert(serviceAccount)
 });
 
-export const db = getFirestore();
+const db = firebase_app.firestore();
+
+module.exports = db;

@@ -3,14 +3,13 @@ const COLLECTION_NAME = "blogs";
 const DATE_FORMAT = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
 
 
-import express, { json } from "express";
-import cors from "cors";
-import { db as firebase_db } from "./firebase.js";
-
+const express =  require("express");
+const cors = require("cors");
+const firebase_db = require("./firebase");
 
 const app = express();
 app.use(cors());
-app.use(json());
+app.use(express.json());
 
 app.get("/blogs", (req, res) => {
     firebase_db.collection(COLLECTION_NAME).get()
